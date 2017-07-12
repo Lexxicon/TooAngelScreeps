@@ -183,11 +183,20 @@ Creep.prototype.stayInRoom = function() {
 
 Creep.prototype.buildRoad = function() {
   if (this.room.controller && this.room.controller.my) {
-
     if (this.pos.lookFor(LOOK_TERRAIN)[0] !== 'swamp' &&
       (this.room.controller.level < 3 || this.room.memory.misplacedSpawn)) {
       return false;
     }
+
+    // TODO should be extracted to a method, stolen from role_harvester
+    if (!this.room.storage || this.room.storage.store.energy + 5000 < config.creep.energyFromStorageThreshold) {
+      return false;
+    }
+  }
+
+  // TODO as creep variable
+  if (this.memory.role != 'carry' && this.memory.role != 'harvester') {
+    this.getEnergyFromStructure();
   }
 
   // TODO as creep variable
