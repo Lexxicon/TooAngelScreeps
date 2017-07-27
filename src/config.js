@@ -59,6 +59,7 @@ global.config = {
     healMyCreeps: false,
     repairStructures: false
   },
+
   autoattack: {
     disabled: false,
     notify: false
@@ -121,7 +122,8 @@ global.config = {
   },
 
   external: {
-    distance: 3
+    distance: 3,
+    defendDistance: 1
   },
 
   carry: {
